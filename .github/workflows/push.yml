@@ -15,7 +15,7 @@ jobs:
   deploy-infra:
     runs-on: ubuntu-latest
     steps:
-    # Checkout the repository to the GitHub Actions runner
+    # Checkout the repository to the GitHub Actions runner  
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -36,7 +36,7 @@ jobs:
       run: |
         az account show
 
-    # Run Terraform init
+    # Run Terraform init  
     - name: Terraform Init
       id: init
       env:
@@ -48,7 +48,7 @@ jobs:
         ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP_NAME"
 
-    # Run a Terraform apply
+    # Run a Terraform apply to deploy the infrastructure  
     - name: Terraform apply
       id: apply
       env:
